@@ -1,0 +1,718 @@
+/**
+ *
+ * FILE INFO: main stylesheet
+ * TITLE: Prefixme: CSS Prefixer just one click away
+ * AUTHOR: Jozef Butko
+ * URL: www.jozefbutko.com
+ * UPDATED: July 2014
+ *
+ */
+/* ==========================================================================
+ Table of contents
+ ========================================================================== */
+/**
+ *
+ * 1. Base styles
+ * 2. Browse Happy prompt
+ * 3. Font settings
+ * 4. Custom styles
+ * 5. Body
+ * 6. About Me
+ * 7. Blogs Section
+ * 8. Work Section
+ * 9. Portfolio Section
+ * 10. Portfolio Description
+ * 11. Filter Buttons
+ * 12. Portfolio Grid Images
+ * 13. Footer
+ * 14. Icons
+ * 15. Helpers
+ * 16. Misc
+ * 17. Fullsizable
+ * 18. Cross-browser hacks
+ * 19. Media Queries
+ * 20. Print styles
+ *
+ */
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+/* border-box it all! */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html, button, input, select, textarea {
+  color: #222; }
+
+html {
+  font-size: 1em;
+  line-height: 1.6; }
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none; }
+
+/*
+ * A better looking default horizontal rule
+ */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+audio, canvas, img, video {
+  vertical-align: middle; }
+
+/*
+ * Remove default fieldset styles.
+ */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0; }
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+textarea {
+  resize: vertical; }
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+@font-face {
+  font-family: 'montserratbold';
+  src: url('../fonts/montserrat-bold-webfont.eot');
+  src: url('../fonts/montserrat-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/montserrat-bold-webfont.woff') format('woff'), url('../fonts/montserrat-bold-webfont.ttf') format('truetype'), url('../fonts/montserrat-bold-webfont.svg?v=1#montserratbold') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+/* Ugly chrome font rendering fix: this font face inherits and overrides the previous font face, but only for chrome */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: 'montserratbold';
+    src: url('../fonts/montserrat-bold-webfont.svg?v=1#montserratbold') format('svg'); }
+ }
+
+@font-face {
+  font-family: 'montserratregular';
+  src: url('../fonts/montserrat-regular-webfont.eot');
+  src: url('../fonts/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/montserrat-regular-webfont.woff') format('woff'), url('../fonts/montserrat-regular-webfont.ttf') format('truetype'), url('../fonts/montserrat-regular-webfont.svg?v=1#montserratregular') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+/* Ugly chrome font rendering fix: this font face inherits and overrides the previous font face, but only for chrome */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: 'montserratregular';
+    src: url('../fonts/montserrat-regular-webfont.svg?v=1#montserratregular') format('svg'); }
+ }
+
+@font-face {
+  font-family: 'sanchezitalic';
+  src: url('../fonts/Sanchez-italic-webfont.eot');
+  src: url('../fonts/Sanchez-italic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Sanchez-italic-webfont.woff') format('woff'), url('../fonts/Sanchez-italic-webfont.ttf') format('truetype'), url('../fonts/Sanchez-italic-webfont.svg?v=1#sanchezitalic') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'sanchezregular';
+  src: url('../fonts/Sanchez-Regular-webfont.eot');
+  src: url('../fonts/Sanchez-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/Sanchez-Regular-webfont.woff') format('woff'), url('../fonts/Sanchez-Regular-webfont.ttf') format('truetype'), url('../fonts/Sanchez-Regular-webfont.svg?v=1#sanchezregular') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "iconfonts";
+  src: url("../fonts/untitled-font-1.eot");
+  src: url("../fonts/untitled-font-1.eot?#iefix") format("embedded-opentype"), url("../fonts/untitled-font-1.woff") format("woff"), url("../fonts/untitled-font-1.ttf") format("truetype"), url("../fonts/untitled-font-1.svg?v=1#untitled-font-1") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+/* This font face inherits and overrides the previous font face, but only for chrome */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: 'iconfonts';
+    src: url("../fonts/untitled-font-1.svg?v=1#untitled-font-1") format("svg"); }
+ }
+
+/* ==========================================================================
+   Browse Happy prompt
+   ========================================================================== */
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0; }
+
+/* ==========================================================================
+   Custom styles
+   ========================================================================== */
+html {
+  min-height: 100%;
+  height: 100%;
+  overflow: hidden; }
+
+body {
+  background: #E5DFCD url('../images/concrete-wall.png');
+  min-height: 100%;
+  /* Stretch html body to device height */
+  padding-top: 80px;
+  -webkit-box-shadow: inset 20px -60px 250px 60px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 20px -60px 250px 60px rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: inset 20px -60px 250px 60px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: inset 20px -60px 250px 60px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 20px -60px 250px 60px rgba(0, 0, 0, 0.1); }
+
+body, textarea {
+  font-family: sanchezregular, arial, serif;
+  color: #757575;
+  font-size: 0.85em;
+  line-height: 1.6; }
+
+/* HEADINGS */
+h1, h2, h3, h4 {
+  color: #7A7373;
+  font-family: montserratregular, arial, serif;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); }
+
+h1 {
+  font-family: montserratbold, Georgia, 'Times New Roman', serif;
+  font-weight: 400; }
+
+/* H1 subheading */
+.description {
+  font-size: 1.1em; }
+
+h2 {
+  font-family: montserratbold, Georgia, 'Times New Roman', serif;
+  font-weight: normal;
+  display: block; }
+
+h3 {
+  font-family: montserratregular, Georgia, 'Times New Roman', serif;
+  font-weight: 400; }
+
+/* Links */
+a {
+  text-decoration: none;
+  font-family: sanchezitalic, helvetica, arial, serif;
+  color: #757575;
+  font-weight: 500;
+  cursor: pointer !important; }
+
+a:hover {
+  border-bottom: 1px dashed #4B494C;
+  padding-bottom: 2px; }
+
+/* Remove dotted outline in Firefox and IE */
+a, a:active, a:focus {
+  outline: 0; }
+
+/* ==========================================================================
+    Icons
+    ========================================================================== */
+.icon {
+  margin: 0 10px 0 0; }
+
+.icon-github-alt, .icon-twitter-alt, .icon-eye, .icon-tag {
+  position: relative;
+  top: 2px; }
+
+.icon-study, .icon-user, .icon-linkedin, .icon-heart {
+  position: relative;
+  top: 1px; }
+
+.icon-eye {
+  position: relative;
+  top: 3px; }
+
+.icon-x-circle {
+  font-size: 14px; }
+
+.icon-arrow-small-right {
+  font-size: 1.5em; }
+
+[data-icon]:before {
+  font-family: "iconfonts" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "iconfonts" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-location:before {
+  content: "a"; }
+
+.icon-user:before {
+  content: "b"; }
+
+.icon-world:before {
+  content: "c"; }
+
+.icon-heart:before {
+  content: "d"; }
+
+.icon-study:before {
+  content: "e"; }
+
+.icon-bubble:before {
+  content: "g"; }
+
+.icon-bulb:before {
+  content: "h"; }
+
+.icon-calendar:before {
+  content: "i"; }
+
+.icon-camera:before {
+  content: "j"; }
+
+.icon-clip:before {
+  content: "k"; }
+
+.icon-cloud:before {
+  content: "m"; }
+
+.icon-data:before {
+  content: "o"; }
+
+.icon-display:before {
+  content: "p"; }
+
+.icon-eye:before {
+  content: "q"; }
+
+.icon-note:before {
+  content: "r"; }
+
+.icon-news:before {
+  content: "s"; }
+
+.icon-music:before {
+  content: "t"; }
+
+.icon-megaphone:before {
+  content: "u"; }
+
+.icon-mail:before {
+  content: "v"; }
+
+.icon-lock:before {
+  content: "w"; }
+
+.icon-like:before {
+  content: "x"; }
+
+.icon-lab:before {
+  content: "y"; }
+
+.icon-key:before {
+  content: "z"; }
+
+.icon-fire:before {
+  content: "A"; }
+
+.icon-food:before {
+  content: "B"; }
+
+.icon-paperplane:before {
+  content: "C"; }
+
+.icon-pen:before {
+  content: "D"; }
+
+.icon-photo:before {
+  content: "E"; }
+
+.icon-search:before {
+  content: "F"; }
+
+.icon-settings:before {
+  content: "G"; }
+
+.icon-trash:before {
+  content: "H"; }
+
+.icon-map-pin-streamline:before {
+  content: "I"; }
+
+.icon-link-streamline:before {
+  content: "J"; }
+
+.icon-man-people-streamline-user:before {
+  content: "K"; }
+
+.icon-like-love-streamline:before {
+  content: "L"; }
+
+.icon-ink-pen-streamline:before {
+  content: "M"; }
+
+.icon-home-house-streamline:before {
+  content: "N"; }
+
+.icon-email-mail-streamline:before {
+  content: "P"; }
+
+.icon-frame-picture-streamline:before {
+  content: "Q"; }
+
+.icon-sound:before {
+  content: "R"; }
+
+.icon-linkedin:before {
+  content: "S"; }
+
+.icon-skype:before {
+  content: "T"; }
+
+.icon-github-alt:before {
+  content: "U"; }
+
+.icon-twitter-alt:before {
+  content: "V"; }
+
+.icon-arrow-small-right:before {
+  content: "W"; }
+
+.icon-tag:before {
+  content: "X"; }
+
+.icon-phone:before {
+  content: "Y"; }
+
+.icon-star:before {
+  content: "Z"; }
+
+.icon-iphone-streamline:before {
+  content: "0"; }
+
+.icon-map-streamline-user:before {
+  content: "1"; }
+
+.icon-factory-lift-streamline-warehouse:before {
+  content: "O"; }
+
+.icon-primitive-dot:before {
+  content: "f"; }
+
+.icon-x-circle:before {
+  content: "l"; }
+
+.icon-contrast:before {
+  content: "n"; }
+
+.icon-circle:before {
+  content: "2"; }
+
+.icon-circle-line:before {
+  content: "3"; }
+
+.icon-contrast-1:before {
+  content: "4"; }
+
+.icon-clock:before {
+  content: "5"; }
+
+/* ==========================================================================
+     Helpers
+     ========================================================================== */
+.longShadow {
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.01), 2px 2px rgba(0, 0, 0, 0.03), 3px 3px rgba(0, 0, 0, 0.025), 4px 4px rgba(0, 0, 0, 0.02), 5px 5px rgba(0, 0, 0, 0.015), 6px 6px rgba(0, 0, 0, 0.01), 7px 6px rgba(0, 0, 0, 0.01), 8px 8px rgba(0, 0, 0, 0.01), 9px 8px rgba(0, 0, 0, 0.01), 10px 10px rgba(0, 0, 0, 0.01), 11px 11px rgba(0, 0, 0, 0.01), 12px 12px rgba(0, 0, 0, 0.01), 13px 13px rgba(0, 0, 0, 0.01), 14px 14px rgba(0, 0, 0, 0.01), 15px 15px rgba(0, 0, 0, 0.01), 16px 16px rgba(0, 0, 0, 0.01), 17px 17px rgba(0, 0, 0, 0.01), 18px 18px rgba(0, 0, 0, 0.01), 19px 19px rgba(0, 0, 0, 0.01), 20px 20px rgba(0, 0, 0, 0.01), 21px 21px rgba(0, 0, 0, 0.01), 22px 22px rgba(0, 0, 0, 0.01), 23px 23px rgba(0, 0, 0, 0.01); }
+
+.last {
+  margin-right: 0; }
+
+/*
+* Image replacement
+*/
+.ir {
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  /* IE 6/7 fallback */
+  *text-indent: -9999px; }
+
+.ir:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 150%; }
+
+.boxsizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.text-hide {
+  color: transparent;
+  font-size: 0;
+  text-shadow: none;
+  vertical-align: middle; }
+
+/*
+* Hide from both screenreaders and browsers: h5bp.com/u
+*/
+.hidden {
+  display: none !important;
+  visibility: hidden; }
+
+/*
+* Hide only visually, but have it available for screenreaders: h5bp.com/v
+*/
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+/*
+* Extends the .visuallyhidden class to allow the element to be focusable
+* when navigated to via the keyboard: h5bp.com/p
+*/
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto; }
+
+/*
+* Hide visually and from screenreaders, but maintain layout
+*/
+.invisible {
+  visibility: hidden; }
+
+.flright {
+  float: right; }
+
+.flleft {
+  float: left; }
+
+/* https://github.com/ahmadajmi/css-helpers/blob/master/css/main.css */
+.fixed {
+  position: fixed; }
+
+.relative {
+  position: relative; }
+
+.absolute {
+  position: absolute; }
+
+.text-left {
+  text-align: left; }
+
+.text-right {
+  text-align: right; }
+
+.text-center {
+  text-align: center; }
+
+.text-justify {
+  text-align: justify; }
+
+.block {
+  display: block; }
+
+.inline-block {
+  display: inline-block; }
+
+.full-width {
+  width: 100%; }
+
+.half-width {
+  width: 50%; }
+
+.no-bullets {
+  list-style: none; }
+
+/* http://mattvarone.com/web-design/css-reusable-classes/ */
+.clear {
+  clear: both; }
+
+.center {
+  margin: 0 auto; }
+
+/* Transition
+https://github.com/pcsg/css-helpers */
+.smooth {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease; }
+
+/*
+  Allow angular.js to be loaded in body, hiding cloaked elements until
+  templates compile.  The !important is important given that there may be
+  other selectors that are more specific or come later and might alter display.
+ */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+/*
+* Clearfix: contain floats
+*
+* For modern browsers
+* 1. The space content is one way to avoid an Opera bug when the
+*    `contenteditable` attribute is included anywhere else in the document.
+*    Otherwise it causes space to appear at the top and bottom of elements
+*    that receive the `clearfix` class.
+* 2. The use of `table` rather than `block` is only necessary if using
+*    `:before` to contain the top-margins of child elements.
+*/
+.clearfix:before, .clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.clearfix:after {
+  clear: both; }
+
+/*
+* For IE 6/7 only
+* Include this rule to trigger hasLayout and contain floats.
+*/
+.clearfix {
+  *zoom: 1; }
+
+/* Button */
+.btn {
+  background: #757575;
+  padding: 6px 10px;
+  color: #FCFCD9; }
+
+.filter.btn {
+  padding: 6px; }
+
+/* Grid Helpers */
+.grid_50 {
+  width: 49%;
+  display: inline-block; }
+
+/* =============================================================================
+  Misc
+  ========================================================================== */
+/* Tooltipster Grow effect with HW acceleration */
+.tooltipster-grow {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+  /* Other transform properties here */
+  -webkit-transform: scale(0, 0);
+  -moz-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform;
+  -webkit-backface-visibility: hidden; }
+
+.tooltipster-default .tooltipster-content {
+  font-family: sanchezregular, Arial, sans-serif !important;
+  font-size: 0.85em !important;
+  line-height: 1.6 !important; }
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+@media only screen and (min-width: 35em) { }
+
+@media print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) { }
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+@media print {
+  /*
+     * Don't show links for images, or javascript/internal links
+     */
+  @page {
+    margin: 0.5cm; }
+
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important; }
+  a, a:visited {
+    text-decoration: underline; }
+  a[href]:after {
+    content: " (" attr(href) ")"; }
+  abbr[title]:after {
+    content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+    content: ""; }
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid; }
+  thead {
+    display: table-header-group;
+    /* h5bp.com/t */ }
+  tr, img {
+    page-break-inside: avoid; }
+  img {
+    max-width: 100% !important; }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3; }
+  h2, h3 {
+    page-break-after: avoid; } }
