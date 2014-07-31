@@ -3,51 +3,62 @@
 var soundcloudAppCtrl = angular.module('soundcloudApp.controller', []);
 
 soundcloudAppCtrl
-	.controller('MainCtrl', ['$scope', 'SoundcloudService', 'localStorageService', function($scope, SoundcloudService, localStorageService) {
+	.controller('MainCtrl', ['$scope', 'SoundcloudService', 'localStorageService', '$q', 'Restangular',
+	function($scope, SoundcloudService, localStorageService, $q, Restangular) {
 
-		//$scope.setToken = SoundcloudService.setToken();
-		$scope.getToken = SoundcloudService.getToken();
-
-		/* User object */
-		$scope.user = SoundcloudService.me();
-
-		$scope.connect = function() {
-		  SoundcloudService.connect();
+		// restangular parameters
+		var params = {
+		  client_id: '0f8f602ff7b13a1110193701aa99aa73',
+		  oauth_token: localStorageService.get('token')
 		};
 
-		$scope.$watch('localStorageDemo', function(value){
-		  localStorageService.set('localStorageDemo',value);
-		  $scope.localStorageDemoValue = localStorageService.get('localStorageDemo');
+		// send oauth_token with every request
+		Restangular.setDefaultRequestParams({ oauth_token: params.oauth_token });
+
+		// get user info
+		Restangular.one('me').get().then(function(me) {
+		//Restangular.customGET("me", {oauth_token: params.access_token}).then(function(me) {
+			$scope.me = me;
+			console.log($scope.me);
 		});
 
-		$scope.token = SoundcloudService.setToken();
+		// authentication START
+		$scope.auth = {
+			authenticated: true
+		};
+
+		if (SoundcloudService.getToken() === null) {
+			$scope.auth.authenticated = false;
+			//console.log('logged out');
+			//console.log(SoundcloudService.getToken());
+		} else {
+			$scope.auth.authenticated = true;
+			//console.log('logged innn');
+			//console.log(SoundcloudService.getToken());
+		}
+
+		$scope.connect = function() {
+			SoundcloudService.connect().then(function() {
+					//console.log('guest spotted !');
+					$scope.setToken = SoundcloudService.setToken();
+					$scope.auth.authenticated = true;
+			});
+		}
+		// authentication END
+
+		// logout function
 		$scope.logout = function() {
 			SoundcloudService.logout();
+			$scope.auth.authenticated = false;
 		}
 
-		$scope.loadTracks = function() {
-			//$scope.$apply(function(){
-			  SoundcloudService.loadTracks();
-			  console.log(data);
-			//});
-		}
 
-		$scope.data = function(limit) {
-			dataService.getData(limit);
-		}
-		//$scope.clearLocalstorage = SoundcloudService.clearLocalstorage();
-
-		// if (localStorageService.getStorageType().indexOf('session') >= 0) {
-		//   $scope.storageType = 'Session storage';
-		// }
-
-		// if (!localStorageService.isSupported) {
-		//   $scope.storageType = 'Cookie';
-		// }
-
-		//$scope.login = SoundcloudService.login();
-
-		//$scope.logout = SoundcloudService.logout();
+		SoundcloudService.getData().then(function(data) {
+			if (window.console && console.log) {
+				console.log("objects returned: " + data.length);
+			}
+			$scope.data = data;
+		});
 
 
 	}]);
