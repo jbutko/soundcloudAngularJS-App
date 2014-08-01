@@ -10,7 +10,7 @@
 		<meta name="viewport" content="width=device-width">
 		<base href="/soundcloud/app/">
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-		<!-- build:css styles/vendor.css -->
+		<!-- build:css styles/main.css -->
 		<!-- bower:css -->
 		<!-- endbower -->
 		<!-- endbuild -->
@@ -46,7 +46,7 @@
 	    <p>Signout of app</p>
 	    <button id='logout' data-ng-click="logout()" data-ng-cloak>Log Out</button>
 	    <!-- <div class="container" data-ng-view=""></div> -->
-	    <div class="results">
+	    <div class="results" data-ng-cloak>
 	        <div data-ng-repeat="track in data.collection">
 	            <div class="grid_3">
 	                <h2>{{track.origin.title}}</h2>

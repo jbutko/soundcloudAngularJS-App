@@ -50,7 +50,7 @@ module.exports = function (grunt) {
         files: ['Gruntfile.js']
       },
       sass: {
-        files: ['app/styles/**/*.scss'],
+        files: ['app/styles/*.scss'],
         tasks: ['sass:dev'],
         sourceComments: 'normal'
       },

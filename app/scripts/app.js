@@ -43,10 +43,6 @@ angular
       localStorageServiceProvider.prefix = 'soundcloudApp';
 
       // Restangular config
-      // RestangularProvider.setBaseUrl('https://api.mongolab.com/api/1/databases/angularjs/collections');
-      // RestangularProvider.setDefaultRequestParams({ oauth_token: '1-89994-86755-98234564099ee36580' });
-      // RestangularProvider.setDefaultHeaders({Authorization:'Bearer ' + localStorageServiceProvider.setPrefix('theNameOfMyApp')});
       RestangularProvider.setBaseUrl('https://api.soundcloud.com');
-      console.log(RestangularProvider.defaultHeaders);
     }
   ]);

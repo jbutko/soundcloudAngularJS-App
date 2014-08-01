@@ -5,9 +5,19 @@ var Token;
 var soundcloudAppService = angular.module('soundcloudApp.services', []);
 
 soundcloudAppService
-	.service('SoundcloudService', ['$window', 'localStorageService', '$http', '$q', function($window, localStorageService, $http, $q) {
+	.service('SoundcloudService', ['$window', 'localStorageService', '$http', '$q', 'Restangular', '$rootScope',
+		function($window, localStorageService, $http, $q, Restangular, $rootScope) {
 
-		var token;
+		var token,
+			tokenStorage,
+			// restangular parameters
+			params = {
+				client_id: '0f8f602ff7b13a1110193701aa99aa73',
+				oauth_token: localStorageService.get('token')
+			};
+
+		// send oauth_token with every request
+		Restangular.setDefaultRequestParams({ oauth_token: params.oauth_token });
 
 		// initiate auth popup
 		SC.initialize({
@@ -17,30 +27,47 @@ soundcloudAppService
 			scope: 'non-expiring'
 		});
 
+		// authorization function
 		this.connect = function() {
 			var deferred = $q.defer();
 			SC.connect(function() {
 				SC.get('/me', function(me) {
 					token = SC.accessToken();
-					console.log('token: ' + token);
-					var tokenStorage = localStorageService.set('token', token);
+					localStorageService.set('token', token);
+					localStorageService.set('me', me);
 				});
+
 				deferred.resolve();
 			});
 			return deferred.promise;
 		},
 
-		this.me = function(callback) {
-			SC.get('/me', {client_id: '0f8f602ff7b13a1110193701aa99aa73'}, callback);
+		// get information about user
+		this.me = function() {
+			// get token to authenticate communication
+			if (localStorageService.get('token') === null) {
+				var oauth_token = SC.accessToken()
+			} else {
+				var oauth_token = localStorageService.get('token')
+			}
+
+			// Restangular.setDefaultRequestParams($rootScope.oauth);
+			Restangular.setDefaultRequestParams({
+				oauth_token: oauth_token
+			});
+			var data = Restangular.one('me').get();
+			var deferred = $q.defer();
+			deferred.resolve(data);
+			return deferred.promise;
 		}
 
 		this.clearLocalstorage = function() {
+			localStorageService.remove('me');
 			localStorageService.clearAll();
 		}
 
 		this.setToken = function() {
 			var tokenStorage = localStorageService.set('token', token);
-			//console.log('tokenStorage: ' + localStorageService.get('token'));
 		}
 
 		this.getToken = function() {
@@ -51,7 +78,7 @@ soundcloudAppService
 		this.login = function() {
 			SC.connect(function() {
 				SC.get('/me', function(me) {
-					alert('Hello, ' + me.username);
+					console.log('Hello, ' + me.username);
 				});
 			});
 		};
@@ -60,14 +87,17 @@ soundcloudAppService
 			localStorageService.clearAll();
 		};
 
-		// load last tracks from user's soundcloud feed
-		var token = localStorageService.get('token');
-		//console.log('tokeniiik: ' + token);
-		delete $http.defaults.headers.common['X-Requested-With'];
+		 // load last tracks from user's soundcloud feed
 		this.getData = function() {
+			// get token to authenticate communication
+			if (localStorageService.get('token') === null) {
+				var oauth_token = SC.accessToken()
+			} else {
+				var oauth_token = localStorageService.get('token')
+			}
 			var deferred = $q.defer();
-			//$http() returns a $promise that we can add handlers with .then()
-			$http.get('https://api.soundcloud.com/me/activities?limit=5&duration[from]=1800000&oauth_token=' + token + '').
+			// $http() returns a $promise that we can then handle with .then() in controller
+			$http.get('https://api.soundcloud.com/me/activities?limit=5&duration[from]=1800000&oauth_token=' + oauth_token + '').
 			success(function(data) {
 				//console.log(data);
 				deferred.resolve(data);
@@ -78,6 +108,7 @@ soundcloudAppService
 			});
 			return deferred.promise;
 		}
+
 
 	}]);
 
