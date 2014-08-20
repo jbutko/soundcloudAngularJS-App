@@ -9,7 +9,7 @@ angular
 
 		// restangular parameters
 		var params = {
-		  client_id: '0f8f602ff7b13a1110193701aa99aa73',
+		  client_id: 'xxxxx', // add your client_id
 		  oauth_token: SoundcloudService.getToken()
 		};
 
