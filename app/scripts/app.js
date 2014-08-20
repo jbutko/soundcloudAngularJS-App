@@ -20,6 +20,7 @@ angular
     'LocalStorageModule',
     'soundcloudApp.services',
     'soundcloudApp.controller',
+    'soundcloudApp.directives',
     'restangular'
   ])
   .config(['$routeProvider', '$locationProvider', 'localStorageServiceProvider', '$httpProvider', 'RestangularProvider',
@@ -45,4 +46,11 @@ angular
       // Restangular config
       RestangularProvider.setBaseUrl('https://api.soundcloud.com');
     }
-  ]);
+  ])
+  // Lodash global implementation
+  .constant('_', window._)
+   // use in views, ng-repeat="x in _.range(3)"
+  .run(function($rootScope) {
+    $rootScope._ = window._;
+  });
+

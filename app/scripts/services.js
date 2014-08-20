@@ -2,9 +2,8 @@
 
 var Token;
 
-var soundcloudAppService = angular.module('soundcloudApp.services', []);
-
-soundcloudAppService
+angular
+	.module('soundcloudApp.services', [])
 	.service('SoundcloudService', ['$window', 'localStorageService', '$http', '$q', 'Restangular', '$rootScope',
 		function($window, localStorageService, $http, $q, Restangular, $rootScope) {
 
@@ -97,7 +96,9 @@ soundcloudAppService
 			}
 			var deferred = $q.defer();
 			// $http() returns a $promise that we can then handle with .then() in controller
-			$http.get('https://api.soundcloud.com/me/activities?limit=5&duration[from]=1800000&oauth_token=' + oauth_token + '').
+			$http.get('https://api.soundcloud.com/me/activities?limit=50&oauth_token=' + oauth_token + '').
+			//$http.get('https://api.soundcloud.com/me/activities?limit=50&duration[from]=18000&oauth_token=' + oauth_token + '').
+			//$http.get('https://api.soundcloud.com/me/activities?oauth_token=' + oauth_token + '').
 			success(function(data) {
 				//console.log(data);
 				deferred.resolve(data);

@@ -49,18 +49,19 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
-      sass: {
-        files: ['app/styles/*.scss'],
-        tasks: ['sass:dev'],
-        sourceComments: 'normal'
-      },
+      // sass: {
+      //   files: ['app/styles/*.scss'],
+      //   tasks: ['sass:dev'],
+      //   sourceComments: 'normal'
+      // },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
+          // '.tmp/styles/{,*/}*.css',
+          'app/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -411,7 +412,7 @@ module.exports = function (grunt) {
   });
 
   // Using the 'grunt development' commando will autoprefix, compile sass, concatenate and activate the watch task
-  grunt.registerTask('dev', ['sass:dev', 'watch']);
+  grunt.registerTask('dev', ['watch']);
 
   grunt.registerTask('server', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');

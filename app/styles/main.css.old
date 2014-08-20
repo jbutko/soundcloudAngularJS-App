@@ -175,7 +175,6 @@ body {
   background: #E5DFCD url('../images/concrete-wall.png');
   min-height: 100%;
   /* Stretch html body to device height */
-  padding-top: 80px;
   -webkit-box-shadow: inset 20px -60px 250px 60px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 20px -60px 250px 60px rgba(0, 0, 0, 0.1);
   -ms-box-shadow: inset 20px -60px 250px 60px rgba(0, 0, 0, 0.1);
@@ -226,6 +225,38 @@ a:hover {
 /* Remove dotted outline in Firefox and IE */
 a, a:active, a:focus {
   outline: 0; }
+
+/* Header */
+.header {
+  padding: 20px 100px;
+  background: rgba(255, 108, 26, 0.25);
+  margin-bottom: 40px; }
+
+.header .container {
+  padding: 0 13px; }
+
+.header .container > div {
+  display: inline-block;
+  margin-right: 50px; }
+
+.header .container p, .header .container div {
+  display: inline-block; }
+
+.header button {
+  margin-right: 10px; }
+
+/* Results */
+.results h2 {
+  margin-top: 0; }
+
+.results .grid_3 {
+  margin-bottom: 30px; }
+
+small {
+  font-size: 90%;
+  line-height: 2;
+  margin-bottom: 10px;
+  display: inline-block; }
 
 /* ==========================================================================
     Icons
@@ -588,8 +619,7 @@ https://github.com/pcsg/css-helpers */
   other selectors that are more specific or come later and might alter display.
  */
 [ng\:cloak], [ng-cloak], .ng-cloak {
-  display: none !important;
-}
+  display: none !important; }
 
 /*
 * Clearfix: contain floats
@@ -716,3 +746,5 @@ https://github.com/pcsg/css-helpers */
     widows: 3; }
   h2, h3 {
     page-break-after: avoid; } }
+
+/*# sourceMappingURL=main.css.map */

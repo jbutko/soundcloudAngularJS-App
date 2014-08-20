@@ -22,83 +22,123 @@
 		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/tooltipster/3.0.5/css/tooltipster.min.css">
 		<!-- 996px RESPONSIVE GRID sYSTEM -  -->
 		<link href="http://static.tumblr.com/zsno5u0/eHRn53ur2/grid.css" rel="stylesheet" type="text/css" />
+		<!-- Google Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="scripts/vendor/modernizr-2.6.2.min.js"></script>
 		<script src="http://connect.soundcloud.com/sdk.js"></script>
 		<!-- endbuild -->
 	</head>
-	<body data-ng-app="soundcloudApp">
-		<!--[if lt IE 7]>
-			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]-->
+	<body data-ng-app="soundcloudApp" data-ng-controller="MainCtrl">
+	    <!--[if lt IE 7]>
+				<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+			<![endif]-->
 
-	<div class="container">
-	<div class="header" data-ng-controller="MainCtrl">
-	    <div class="login" data-ng-show="auth.authenticated == false" data-ng-cloak>
-	        <p>Signin</p>
-	        <button id='login' data-ng-click="connect()">Log In</button>
-	    </div>
+			<div class="header">
+			    <div class="container">
+			        <div class="login" data-ng-show="auth.authenticated == false" data-ng-cloak>
+			            <button id='login' data-ng-click="connect()">Log in</button>
+			            <p>Authorize</p>
+			        </div>
 
-	    <div class="login" data-ng-show="auth.authenticated != false" data-ng-cloak>
-	        <p>Welcome back, {{ me.username }}!</p>
-	    </div>
+			        <div class="login" data-ng-show="auth.authenticated != false" data-ng-cloak>
+			            <p>Welcome back, {{ me.username }}!</p>
+			        </div>
 
-	    <p>Signout of app</p>
-	    <button id='logout' data-ng-click="logout()" data-ng-cloak>Log Out</button>
-	    <!-- <div class="container" data-ng-view=""></div> -->
-	    <div class="results" data-ng-cloak>
-	        <div data-ng-repeat="track in data.collection">
-	            <div class="grid_3">
-	                <h2>{{track.origin.title}}</h2>
-	                <small><strong>Posted by:</strong>{{track.origin.user.username}}</small>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+			        <div class="logout">
+			            <button id='logout' data-ng-click="logout()" data-ng-cloak>Log Out</button>
+			            <p>Log out</p>
+			        </div>
+
+			        <span>No. Of Tracks</span>
+			        <form name="limitForm">
+			            <input type="text" name="tracksLimit" data-ng-model="tracksLimit" data-ng-change="numberOfTracks(tracksLimit)" autofocus="autofocus" />
+			        </form>
+
+			        <!-- Duration Limit -->
+			        <span>Duration</span>
+			        <form name="durationLimitForm">
+			            <input type="text" name="durationLimit" data-ng-model="durationLimit" data-ng-change="trackLength(durationLimit)" />
+			        </form>
+			    </div>
+			</div>
+
+			<!-- <player></player> -->
+			<div class="container clearfix">
+
+			    <!-- <div class="container" data-ng-view=""></div> -->
+			    <!-- Number of tracks limit -->
+			    <div id="masonry" class="results clearfix" data-ng-cloak>
+			        <div data-ng-repeat="track in data">
+			            <!--  <div data-ng-repeat="track in _.filter(data.collection, function(num) { return num % 2 == 0; })"> -->
+			            <div class="grid_3">
+			                <h2>{{ track.title }}</h2>
+			                <!-- <h2>{{ _.where(track, {'id': 161277200}) }}</h2> -->
+			                <small>
+			                    <i>Posted by: </i>{{track.user.username}}</small>
+			                    <div id="player"></div>
+			                <player></player>
+			            </div>
+			        </div>
+			    </div>
+	        <div id="loadmore" class="text-center"><button>Load more...</button></div>
 
 
-	</div>
-	<!-- .container END -->
+			</div>
+			<!-- .container END -->
 
 
-		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-		 <script>
-			 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-			 ga('create', 'UA-XXXXX-X');
-			 ga('send', 'pageview');
-		</script>
 
-		<!--[if lt IE 9]>
-		<script src="bower_components/es5-shim/es5-shim.js"></script>
-		<script src="bower_components/json3/lib/json3.min.js"></script>
-		<![endif]-->
+	    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+	    <script>
+	    (function(i, s, o, g, r, a, m) {
+	        i['GoogleAnalyticsObject'] = r;
+	        i[r] = i[r] || function() {
+	            (i[r].q = i[r].q || []).push(arguments)
+	        }, i[r].l = 1 * new Date();
+	        a = s.createElement(o),
+	        m = s.getElementsByTagName(o)[0];
+	        a.async = 1;
+	        a.src = g;
+	        m.parentNode.insertBefore(a, m)
+	    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-		<!-- Scripts -->
-		<script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
-		<script src="scripts/vendor/plugins.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"></script>
+	    ga('create', 'UA-XXXXX-X');
+	    ga('send', 'pageview');
+	    </script>
 
-		<!-- build:js scripts/vendor.js -->
-		<!-- bower:js -->
-		<script src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
-		<script src="bower_components/angular-resource/angular-resource.js"></script>
-		<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-		<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-		<script src="bower_components/angular-route/angular-route.js"></script>
-		<!-- endbower -->
-		<!-- endbuild -->
+	    <!--[if lt IE 9]>
+			<script src="bower_components/es5-shim/es5-shim.js"></script>
+			<script src="bower_components/json3/lib/json3.min.js"></script>
+			<![endif]-->
 
-		<!-- build:js({.tmp,app}) scripts/scripts.js -->
-		<script src="scripts/config.js"></script>
-		<script src="scripts/app.js"></script>
-		<script src="scripts/services.js"></script>
-		<!--<script src="bower_components/angular-oauth/src/js/angularOauth.js"></script>-->
-		<script src="scripts/controllers.js"></script>
-		<!-- endbuild -->
-</body>
+	    <!-- Scripts -->
+	    <script type="text/javascript" src="scripts/vendor/plugins.js"></script>
+	    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+	    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/restangular/1.3.1/restangular.min.js"></script>
+	    <script src="bower_components/jquery/dist/jquery.js"></script>
+			<script src="bower_components/masonry/dist/masonry.pkgd.min.js"></script>
+			<script src="bower_components/imagesloaded/imagesloaded.js"></script>
+	    <script type="text/javascript" src="bower_components/angular-masonry/angular-masonry.js"></script>
+
+	    <!-- build:js scripts/vendor.js -->
+	    <!-- bower:js -->
+	    <script type="text/javascript" src="bower_components/angular-local-storage/angular-local-storage.min.js"></script>
+	    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+	    <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+	    <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	    <!-- endbower -->
+	    <!-- endbuild -->
+
+	    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+	    <script type="text/javascript" src="scripts/config.js"></script>
+	    <script type="text/javascript" src="scripts/app.js"></script>
+	    <script type="text/javascript" src="scripts/services.js"></script>
+	    <script type="text/javascript" src="scripts/directives.js"></script>
+	    <script type="text/javascript" src="scripts/controllers.js"></script>
+	    <!-- endbuild -->
+	</body>
+
 </html>
